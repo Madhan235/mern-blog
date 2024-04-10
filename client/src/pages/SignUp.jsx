@@ -1,6 +1,7 @@
 import { Alert, Button, FloatingLabel, Label, Spinner, TextInput } from "flowbite-react";
 import React, { useState } from "react";
 import { Link,useNavigate } from "react-router-dom";
+import Oauth from "../components/Oauth";
 
 
 const SignUp = () => {
@@ -65,7 +66,8 @@ const SignUp = () => {
         {/* right */}
         <div className="flex-1">
           <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-            <div className="flex flex-col gap-3">
+            
+          <div>
               <Label value="your Name" />
               <TextInput
                 type="text"
@@ -73,6 +75,10 @@ const SignUp = () => {
                 id="username"
                 onChange={handleChange}
               />
+            </div>
+
+            <div>
+
               <Label value="your Email" />
               <TextInput
                 type="email"
@@ -80,6 +86,9 @@ const SignUp = () => {
                 id="email"
                 onChange={handleChange}
               />
+            </div>
+            <div>
+
               <Label value="your Password" />
               <TextInput
                 type="password"
@@ -100,6 +109,7 @@ const SignUp = () => {
            ) : 'Sign Up'}
           
             </Button>
+            <Oauth/>
           </form>
 
           <div className="flex gap-2 text-sm mt-4">

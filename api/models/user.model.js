@@ -15,6 +15,10 @@ const userSchema = new mongoose.Schema({
         type:String,
         required:true,
     },
+    profilePicture:{
+        type:String,
+        default:'https://cdn4.vectorstock.com/i/1000x1000/52/68/purple-user-icon-in-the-circle-thin-line-vector-23745268.jpg'
+    }
 },
 {timestamps:true}
 );
