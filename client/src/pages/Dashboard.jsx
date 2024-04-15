@@ -2,6 +2,7 @@
 import {useLocation} from 'react-router-dom';
 import DashSidebar from '../components/DashSidebar';
 import DashProfile from '../components/DashProfile';
+import DashPosts from '../components/DashPosts';
 
 const Dashboard = () => {
 
@@ -29,11 +30,15 @@ useEffect(() =>{
 
 <div className='w-full' >
 {/* Content Based On the SideBar Navigation */}
+{/* profile */}
 
 {tab === 'profile' &&  
 <DashProfile/>
 }
 
+{/* posts */}
+
+{tab=== 'posts' && <DashPosts/>}
 </div>
 
     </div>
