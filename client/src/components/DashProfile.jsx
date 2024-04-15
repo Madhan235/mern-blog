@@ -15,9 +15,11 @@ import { useDispatch } from 'react-redux';
 
 import { HiOutlineExclamationCircle} from 'react-icons/hi'
 
+import { Link} from 'react-router-dom'
+
 export default function DashProfile() {
   
-  const {currentUser , error} = useSelector(state => state.user);
+  const {currentUser , error , loading} = useSelector(state => state.user);
 
   const [imageFile,setImageFile] = useState(null);
 
@@ -268,8 +270,20 @@ styles={{
              onChange={handleChange}
              />
              <Button type="submit" gradientDuoTone='purpleToBlue' outline
+             disabled={loading || imageFileUploading}
+             >{loading ? "loading..." :'Update'}</Button>
+
+              
+             {currentUser.isAdmin   && (
+             <Link to={"/create-post"}>
+             <Button
+             type='button'
+             gradientDuoTone={'purpleToPink'}
+             className='w-full'
+             >Create a post</Button>
+             </Link>
+             )}
              
-             >Update</Button>
         </form>
         <div className='text-red-500  mt-5 flex justify-between'>
             <span className='cursor-pointer
