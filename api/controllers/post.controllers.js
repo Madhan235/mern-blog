@@ -72,3 +72,19 @@ const lastMonthPosts = await Post.countDocuments({ createdAt : {$gte : oneMonthA
     next(error);
 }
 };
+
+export const deletepost = async (req,res,next)=>{
+   
+    if(!req.user.isAdmin && req.user.id !== req.params.userId){
+        return next(errorHandler(403,"You are not allowed to delete this post"))
+    }
+     
+    try {
+      await Post.findByIdAndDelete({_id: req.params.postId});
+
+        res.status(200).json("Post has been Deleted");
+    } catch (error) {
+        next(error);
+    }
+  
+}
