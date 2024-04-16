@@ -20,7 +20,7 @@ useEffect(() =>{
 },[location.search])
 
   return (
-    <div className='min-h-screen flex flex-col md:flex-row'>
+    <div className='min-h-screen flex flex-col lg:flex-row'>
 <div className=''>
 {/* sideBar */}
 
@@ -28,7 +28,7 @@ useEffect(() =>{
 
 </div>
 
-<div className='w-full' >
+<div className='flex-1' >
 {/* Content Based On the SideBar Navigation */}
 {/* profile */}
 

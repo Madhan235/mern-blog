@@ -9,6 +9,7 @@ import {app} from '../firebase.js';
 
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function CreatePost() {
 
@@ -21,7 +22,10 @@ export default function CreatePost() {
   const [formData, setFormData] = useState({});
 
   const [publishError, setPublishError] = useState(null);
-  const handleUpdloadImage = async ()=>{
+
+  const navigate = useNavigate(); 
+  
+    const handleUpdloadImage = async ()=>{
 
     try {
       if(!imageFile){ 
@@ -77,6 +81,7 @@ console.log(res);
 
      if(res.ok){
       setPublishError(null);
+      navigate("/dashboard?tab=posts")
      }
 
   } catch (error) {
@@ -108,6 +113,10 @@ console.log(res);
   <option value={"mongoDB"}>mongoDB</option>
   <option value={"mongoose"}>mongoose</option>
   <option value={"mySql"}>mySql</option>
+  <option value={"tailwind"}>Tailwind</option>
+  <option value={'redux'}>Redux</option>
+  <option value={'flow-bite'}>Flow-Bite</option>
+  <option value={'redux-persist'}>Redux-Persist</option>
  </Select>
  </div>
 
