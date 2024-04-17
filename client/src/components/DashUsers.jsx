@@ -126,7 +126,7 @@ setShowModal(false);
 
         <Table.Cell>
          
-         <img src={user.profilePicture} alt={user.username} className="w-20 h-10 object-contain rounded-full bg-gray-500 border"/>
+         <img src={user.profilePicture} alt={user.username} className="w-10 h-10 object-contain rounded-full overflow-hidden"/>
          
         </Table.Cell>
 

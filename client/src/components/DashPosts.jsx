@@ -124,7 +124,7 @@ prev.filter((post)=> post._id !== deletePostId));
 
         <Table.Cell>
         <Link  to={`/post/${post.slug}`}>
-         <img src={post.image} alt={post.title} className="w-20 h-10 object-contain rounded-xl bg-gray-500 border"/>
+         <img src={post.image} alt={post.title} className="w-10 h-10 object-contain rounded-xl bg-gray-500 border"/>
         </Link>
         </Table.Cell>
 

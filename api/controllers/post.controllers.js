@@ -40,7 +40,7 @@ try {
 
         ...(req.query.userId && {userId : req.query.userId}),
         ...(req.query.category && { categroy: req.query.category}),
-        ...(req.query.slug && {   slug : req.query.slug}),
+        ...(req.query.slug && { slug : req.query.slug}),
         ...(req.query.postId && { _id : req.query.postId}),
         ...(req.query.searchTerm && {
             $or:[
