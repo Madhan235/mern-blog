@@ -8,6 +8,7 @@ router.post('/create', verifyToken, createPost );
 
 router.get('/getposts', getposts);
 router.delete('/delete/:postId/:userId', verifyToken,deletepost);
-router.put('/update/:postId/:userId', verifyToken, updatepost)
+router.put('/update/:postId/:userId', verifyToken, updatepost);
+
 
 export default router
