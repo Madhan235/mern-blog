@@ -1,8 +1,9 @@
-import { Alert, Button, Textarea } from "flowbite-react";
+import { Alert, Button, Modal, Textarea } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link,useNavigate } from "react-router-dom";
 import Comment from "../components/Comment";
+import { HiOutlineExclamationCircle} from 'react-icons/hi';
 
 export default function CommentSection({postId}) {
   
@@ -11,6 +12,8 @@ export default function CommentSection({postId}) {
   const [comment ,setComment] = useState("");
   const [commentError,setCommentError] = useState(null);
   const [commentData,setCommentData] = useState([]);
+  const [showModal,setShowModal] = useState(false);
+  const [commentToDelete,setCommentToDelete] = useState(null);
   const navigate = useNavigate();
 
 const handleChange=(e)=>{
@@ -20,7 +23,6 @@ const handleChange=(e)=>{
 const handleSumbit = async (e)=>{
     e.preventDefault();
      try {
-      
        if(comment.length > 200){
          return ;
         }
@@ -33,9 +35,8 @@ const handleSumbit = async (e)=>{
         if(res.ok){
           setComment('');
           setCommentError(null);
-          setCommentData([data, ...comment])
+          setCommentData([data, ...commentData])
         }
-        
       } catch (error) {
         setCommentError(error.message);
       }
@@ -86,6 +87,24 @@ const handleEdit=(comment,editedContent)=>{
   setCommentData(
     commentData.map((c)=> c._id === comment._id ? {...comment, content:editedContent} : comment)  
   )
+}
+
+const handleDelete = async ()=>{
+      setShowModal(false);
+  try {
+  const res = await fetch(`/api/comment/deletecomment/${commentToDelete}`,{
+    method: "DELETE",
+  })
+  const data = await res.json();
+  if(res.ok){
+    setCommentData(
+      commentData.filter((c)=> c._id !== commentToDelete)
+    )
+  }
+
+} catch (error) {
+  console.log(error.message);
+}
 }
  
   return (
@@ -142,6 +161,7 @@ const handleEdit=(comment,editedContent)=>{
           {commentData.length === 1 ? "comment" : "comments"}
         </p>
           <div className="border border-gray-400 py-1 px-2 rounded-md"><p>{commentData.length}</p></div>
+
           </div>
 
           {commentData.map((comment)=>(
@@ -151,11 +171,37 @@ const handleEdit=(comment,editedContent)=>{
                   comment={comment}
                   onLike = {handleLike}
                   onEdit = {handleEdit}
+                  onDelete = {
+                    (commentId)=>{
+                    setShowModal(true)
+                   setCommentToDelete(commentId)}
+                             }
                   />
           )) }
      </>
         
       )}
+
+<Modal show={showModal} onClose={()=>setShowModal(false)} 
+      popup
+      size={'md'}
+      >
+  <Modal.Header/>
+<Modal.Body>
+<div className="text-center">
+
+  <HiOutlineExclamationCircle className='h-14 w-14 text-gray-400 dark:text-gray-200 mb-4 mx-auto'/>
+  <h3 className='mb-5 text-lg text-gray-500 dark:text-gray-400'>Are you sure want to delete this Comment</h3>
+  <div className="flex justify-center gap-6">
+    <Button color={'failure'} onClick={handleDelete}>Yes, I'm sure</Button>
+    <Button onClick={()=>setShowModal(false)}
+    color={'success'}
+    >No, cancel</Button>
+
+    </div>
+</div>
+</Modal.Body>
+      </Modal>
     </div>
   );
 }
