@@ -5,6 +5,7 @@ import { Link, useLocation} from 'react-router-dom';
 import {HiUser,HiArrowSmRight, HiDocumentText, HiUserGroup} from 'react-icons/hi';
 import { signoutSuccess } from '../redux/user/userSlice';
 import { useDispatch,useSelector } from 'react-redux';
+import { FaComments } from "react-icons/fa";
 
 export default function DashSidebar() {
 
@@ -59,6 +60,7 @@ export default function DashSidebar() {
 </Link>
 
 {currentUser.isAdmin && (
+  <>
 
 <Link to='/dashboard?tab=posts' >
             <Sidebar.Item active={tab === ' posts'} 
@@ -69,6 +71,18 @@ export default function DashSidebar() {
                 Posts 
             </Sidebar.Item> 
 </Link>
+
+
+<Link to='/dashboard?tab=comments' >
+            <Sidebar.Item active={tab === '  comments'} 
+            icon={FaComments}
+            label="comments" labelColor='dark'
+            as='div'
+            >
+              Comments
+            </Sidebar.Item> 
+</Link>
+              </>
 )}
 
 
