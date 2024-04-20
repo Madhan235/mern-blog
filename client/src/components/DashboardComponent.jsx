@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import {useSelector} from 'react-redux';
-import {HiAnnotation, HiArrowNarrowUp, HiDocumentText, HiOutlineUserGroup} from 'react-icons/hi';
+import {HiAnnotation, HiArrowDown, HiArrowNarrowUp, HiArrowSmDown, HiDocumentText, HiOutlineUserGroup} from 'react-icons/hi';
 import {Button, Table} from 'flowbite-react';
 import {Link} from  'react-router-dom'
 export default function DashboardComponent() {
@@ -26,7 +26,7 @@ useEffect(()=>{
                 setUsers(data.users);
                 setTotalUsers(data.totalUsers);
                 setLastMonthUsers(data.usersAddedLastMonth)
-                
+                 
             }
         } catch (error) {
             console.log(error.message);
@@ -86,10 +86,19 @@ useEffect(()=>{
              <HiOutlineUserGroup className='bg-teal-600 text-white rounded-full text-5xl p-3 shadow-lg'/>
         </div>
              <div className="flex gap-2  text-sm ">
-                <span className='text-green-500 flex items-center'>
-                        <HiArrowNarrowUp/>
+              {  lastMonthUsers >= 1 ? 
+               ( <span className='text-green-500 flex items-center'>
+                        <HiArrowNarrowUp/>  
                             {lastMonthUsers}
-                    </span>
+                    </span>)
+                  : 
+                   ( <span className='text-red-500 flex items-center'>
+                        <HiArrowDown/>  
+                            {lastMonthUsers}
+                    </span>)
+                    
+                }
+                    
              <span className="text-gray-500">Last month</span> 
         </div>     
     </div>
@@ -103,10 +112,18 @@ useEffect(()=>{
              <HiAnnotation  className='bg-purple-600 text-white rounded-full text-5xl p-3 shadow-lg'/>
         </div>
              <div className="flex gap-2  text-sm ">
-                <span className='text-green-500 flex items-center'>
-                        <HiArrowNarrowUp/>
+             {  lastMonthComments >= 1 ? 
+               ( <span className='text-green-500 flex items-center'>
+                        <HiArrowNarrowUp/>  
                             {lastMonthComments}
-                    </span>
+                    </span>)
+                  : 
+                   ( <span className='text-red-500 flex items-center'>
+                        <HiArrowDown/>  
+                            {lastMonthComments}
+                    </span>)
+                    
+                }
              <span className="text-gray-500">Last month</span> 
         </div>     
     </div>
@@ -120,10 +137,18 @@ useEffect(()=>{
              <HiDocumentText className='bg-orange-600 text-white rounded-full text-5xl p-3 shadow-lg'/>
         </div>
              <div className="flex gap-2  text-sm ">
-                <span className='text-green-500 flex items-center'>
-                        <HiArrowNarrowUp/>
+             {  lastMonthPosts >= 1 ? 
+               ( <span className='text-green-500 flex items-center'>
+                        <HiArrowNarrowUp/>  
                             {lastMonthPosts}
-                    </span>
+                    </span>)
+                  : 
+                   ( <span className='text-red-500 flex items-center'>
+                        <HiArrowDown/>  
+                            {lastMonthPosts}
+                    </span>)
+                    
+                }
              <span className="text-gray-500">Last month</span> 
         </div>     
     </div>
