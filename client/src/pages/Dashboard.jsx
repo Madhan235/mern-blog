@@ -5,6 +5,7 @@ import DashProfile from '../components/DashProfile';
 import DashPosts from '../components/DashPosts';
 import DashUsers from '../components/DashUsers';
 import DashComments from '../components/DashComments';
+import DashboardComponent from '../components/DashboardComponent';
 
 const Dashboard = () => {
 
@@ -49,6 +50,10 @@ useEffect(() =>{
 {/* comments */}
 
 {tab === 'comments' && <DashComments/>}
+
+{/* all information in dashboard component */}
+
+{tab === 'dash' && <DashboardComponent/>}
 </div>
 
     </div>
